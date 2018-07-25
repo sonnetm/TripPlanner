@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,8 +25,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iyk-AH-Ds7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="redBus" translatesAutoresizingMaskIntoConstraints="NO" id="IGU-je-sQi">
+                                        <rect key="frame" x="8" y="28" width="359" height="128"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="140" id="LfG-SL-QY8"/>
+                                        </constraints>
+                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zse-2l-wck" userLabel="PickUpView">
-                                        <rect key="frame" x="35" y="185" width="305" height="40"/>
+                                        <rect key="frame" x="35" y="285" width="305" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Jh-g6-3Ni">
                                                 <rect key="frame" x="15" y="0.0" width="275" height="40"/>
@@ -56,7 +63,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G8u-kV-Oel" userLabel="DestinationView">
-                                        <rect key="frame" x="35" y="237" width="305" height="40"/>
+                                        <rect key="frame" x="35" y="337" width="305" height="40"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8YM-Zr-l5z">
                                                 <rect key="frame" x="15" y="0.0" width="275" height="40"/>
@@ -85,7 +92,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xrL-S0-nWs" userLabel="DateView">
-                                        <rect key="frame" x="35" y="317" width="305" height="161"/>
+                                        <rect key="frame" x="35" y="417" width="305" height="161"/>
                                         <subviews>
                                             <segmentedControl contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7ff-dd-eV2">
                                                 <rect key="frame" x="73" y="0.0" width="159" height="29"/>
@@ -253,10 +260,10 @@
                                         </variation>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3zO-AF-r6t">
-                                        <rect key="frame" x="35" y="482" width="305" height="100"/>
+                                        <rect key="frame" x="35" y="582" width="305" height="0.0"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Walking Duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LG8-0L-VY9">
-                                                <rect key="frame" x="0.0" y="15" width="93.5" height="15"/>
+                                                <rect key="frame" x="0.0" y="-85" width="93.5" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="0IX-h9-VcL"/>
                                                 </constraints>
@@ -265,19 +272,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHa-Bw-B26" userLabel="WalkingSlider" customClass="Slider" customModule="fluid_slider">
-                                                <rect key="frame" x="113.5" y="7.5" width="191.5" height="30"/>
+                                                <rect key="frame" x="113.5" y="-92.5" width="191.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="tvv-M9-9yv"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dtr-52-XiF" userLabel="DepartureTimeSlider" customClass="Slider" customModule="fluid_slider">
-                                                <rect key="frame" x="113.5" y="57.5" width="191.5" height="30"/>
+                                                <rect key="frame" x="113.5" y="-42.5" width="191.5" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="86C-M2-aN7"/>
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Departs In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OhN-L3-9dn">
-                                                <rect key="frame" x="0.0" y="65" width="57" height="15"/>
+                                                <rect key="frame" x="0.0" y="-35" width="57" height="15"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="15" id="zOG-E8-hPy"/>
                                                 </constraints>
@@ -291,7 +298,7 @@
                                             <constraint firstAttribute="bottom" secondItem="OhN-L3-9dn" secondAttribute="bottom" constant="20" id="3ed-Iw-2jO"/>
                                             <constraint firstItem="JHa-Bw-B26" firstAttribute="centerY" secondItem="LG8-0L-VY9" secondAttribute="centerY" id="6UP-mb-6fc"/>
                                             <constraint firstItem="LG8-0L-VY9" firstAttribute="leading" secondItem="3zO-AF-r6t" secondAttribute="leading" id="BbC-hD-DTQ"/>
-                                            <constraint firstAttribute="height" constant="100" id="Bz5-Qa-Xh8"/>
+                                            <constraint firstAttribute="height" id="Bz5-Qa-Xh8"/>
                                             <constraint firstItem="dtr-52-XiF" firstAttribute="leading" secondItem="JHa-Bw-B26" secondAttribute="leading" id="FeY-Pk-j0e"/>
                                             <constraint firstItem="JHa-Bw-B26" firstAttribute="leading" secondItem="LG8-0L-VY9" secondAttribute="trailing" constant="20" id="aLK-PD-cmI"/>
                                             <constraint firstAttribute="trailing" secondItem="JHa-Bw-B26" secondAttribute="trailing" id="bJi-5d-L0C"/>
@@ -323,13 +330,13 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHo-JP-uSS">
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VHo-JP-uSS">
                                         <rect key="frame" x="290" y="602" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="TD7-N3-7Ew"/>
                                             <constraint firstAttribute="width" constant="50" id="oPd-Yl-RyA"/>
                                         </constraints>
-                                        <state key="normal" title="Filter">
+                                        <state key="normal" title="Filter" image="funnel">
                                             <color key="titleColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -337,14 +344,16 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.38431372549019605" green="0.40000000000000002" blue="0.43529411764705883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="VHo-JP-uSS" firstAttribute="centerY" secondItem="ZAc-qL-5ZV" secondAttribute="centerY" id="0bb-nd-3aC"/>
                                     <constraint firstItem="Zse-2l-wck" firstAttribute="leading" secondItem="iyk-AH-Ds7" secondAttribute="leading" constant="35" id="1Ct-a8-LXO"/>
                                     <constraint firstAttribute="bottom" secondItem="ZAc-qL-5ZV" secondAttribute="bottom" constant="15" id="Daj-QP-NCf"/>
                                     <constraint firstItem="3zO-AF-r6t" firstAttribute="top" secondItem="xrL-S0-nWs" secondAttribute="bottom" constant="4" id="EGO-Fy-yAR"/>
                                     <constraint firstItem="G8u-kV-Oel" firstAttribute="leading" secondItem="Zse-2l-wck" secondAttribute="leading" id="G9I-kl-faV"/>
+                                    <constraint firstItem="IGU-je-sQi" firstAttribute="top" secondItem="iyk-AH-Ds7" secondAttribute="topMargin" constant="50" id="LQK-mw-5T2"/>
                                     <constraint firstItem="3zO-AF-r6t" firstAttribute="leading" secondItem="iyk-AH-Ds7" secondAttribute="leading" constant="35" id="UiV-Wt-ovn"/>
+                                    <constraint firstAttribute="trailing" secondItem="IGU-je-sQi" secondAttribute="trailing" constant="600" id="aT5-x9-CJD"/>
                                     <constraint firstAttribute="trailing" secondItem="VHo-JP-uSS" secondAttribute="trailing" constant="35" id="alV-1X-CgE"/>
                                     <constraint firstItem="xrL-S0-nWs" firstAttribute="top" secondItem="G8u-kV-Oel" secondAttribute="bottom" constant="40" id="b4Y-hF-W28"/>
                                     <constraint firstItem="ZAc-qL-5ZV" firstAttribute="leading" secondItem="iyk-AH-Ds7" secondAttribute="leading" constant="35" id="cSR-YQ-vzZ"/>
@@ -357,6 +366,7 @@
                                     <constraint firstItem="G8u-kV-Oel" firstAttribute="top" secondItem="Zse-2l-wck" secondAttribute="bottom" constant="12" id="qpX-X7-5u6"/>
                                     <constraint firstItem="G8u-kV-Oel" firstAttribute="height" secondItem="Zse-2l-wck" secondAttribute="height" id="saD-Xx-xgu"/>
                                     <constraint firstItem="xrL-S0-nWs" firstAttribute="leading" secondItem="iyk-AH-Ds7" secondAttribute="leading" constant="35" id="zDg-ix-ljd"/>
+                                    <constraint firstItem="IGU-je-sQi" firstAttribute="leading" relation="lessThanOrEqual" secondItem="iyk-AH-Ds7" secondAttribute="leading" constant="8" id="zpp-XE-iPn"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -374,12 +384,14 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="busiImageView" destination="IGU-je-sQi" id="Pyc-of-e7m"/>
                         <outlet property="dateAndTimePicker" destination="D7A-H2-ruK" id="159-dG-E2a"/>
                         <outlet property="departsOrArriveSegmentControl" destination="7ff-dd-eV2" id="GTb-wn-AVg"/>
                         <outlet property="departureTimeSlider" destination="dtr-52-XiF" id="wPy-hq-ctz"/>
                         <outlet property="filterButton" destination="VHo-JP-uSS" id="9dH-xt-wf6"/>
                         <outlet property="filterView" destination="3zO-AF-r6t" id="uOJ-X9-xyR"/>
                         <outlet property="filterViewHeight" destination="Bz5-Qa-Xh8" id="qHC-Ci-yxF"/>
+                        <outlet property="imageViewTrailingConstraint" destination="aT5-x9-CJD" id="Wzu-Yc-9k2"/>
                         <outlet property="searchButton" destination="ZAc-qL-5ZV" id="pYY-W7-XuQ"/>
                         <outlet property="startFrom" destination="9Jh-g6-3Ni" id="h54-Zx-kPB"/>
                         <outlet property="walkingSliderView" destination="JHa-Bw-B26" id="9r4-SR-OsV"/>
@@ -552,6 +564,8 @@
         <image name="backButtonNew" width="16" height="16"/>
         <image name="date_icon" width="16" height="16"/>
         <image name="down_arrow_search" width="16" height="16"/>
+        <image name="funnel" width="256" height="256"/>
         <image name="pickup_time_icon" width="16" height="16"/>
+        <image name="redBus" width="512" height="362"/>
     </resources>
 </document>

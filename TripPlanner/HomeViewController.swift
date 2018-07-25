@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
 
 	//MARK:- Outlets
 	@IBOutlet weak var whereTo: UIButton!
+	@IBOutlet weak var busiImageView: UIImageView!
 	@IBOutlet weak var startFrom: UIButton!
 	@IBOutlet weak var dateAndTimePicker: UIDatePicker!
 	@IBOutlet weak var walkingSliderView: Slider!
@@ -36,6 +37,7 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var filterView: UIView!
 	@IBOutlet weak var filterViewHeight: NSLayoutConstraint!
 	@IBOutlet weak var departsOrArriveSegmentControl: UISegmentedControl!
+	@IBOutlet weak var imageViewTrailingConstraint: NSLayoutConstraint!
 
 	//MARK:- Variables
 	var filterShown = true
@@ -60,6 +62,16 @@ class HomeViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		initialSetup()
+
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		imageViewTrailingConstraint.constant = 20
+		UIView.animate(withDuration: 1) {
+			self.view.layoutIfNeeded()
+			//self.busiImageView.layoutIfNeeded()
+		}
 	}
 
 	override func didReceiveMemoryWarning() {
@@ -80,6 +92,7 @@ class HomeViewController: UIViewController {
 		//Date and Time picker
 		dateAndTimePicker.setValue(UIColor.white, forKeyPath: "textColor")
 		dateAndTimePicker.datePickerMode = .dateAndTime
+		dateAndTimePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
 		//Slider
 		addCustomSlider(slider: walkingSliderView)
 		addCustomSlider(slider: departureTimeSlider)
@@ -160,6 +173,7 @@ extension HomeViewController {
 		filterViewHeight.constant =  filterShown ? 0 : 130
 		if !filterShown {
 			UIView.animate(withDuration: 0.8) {
+				self.view.layoutIfNeeded()
 				self.filterView.layoutIfNeeded()
 			}
 		} else {
@@ -185,8 +199,12 @@ extension HomeViewController {
 
 }
 
-// MARK: - Time & Date picker Delegates
+// MARK: - Time & Date picker Methods
 extension HomeViewController {
 
+	@objc func dateChanged(_ sender: UIDatePicker) {
+		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: sender.date)
+	print("\(components.day) \(String(describing: components.month)) \(String(describing: components.year)) \(String(describing: components.hour)) \(components.minute ?? 0)")
+	}
 
 }
