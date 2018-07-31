@@ -18,6 +18,11 @@ enum SearchBox {
 	case whereTo
 }
 
+enum Filter: Int {
+	case walking = 1
+	case departsIn
+}
+
 //MARK:- Constants
 struct HomeConstants {
 	static let GoogleMapsAPIServerKey = "AIzaSyAw5egCQ9tIJFuqsEGxeaYOV4eVbrg2b-k"
@@ -30,7 +35,7 @@ class HomeViewController: UIViewController {
 	@IBOutlet weak var busiImageView: UIImageView!
 	@IBOutlet weak var startFrom: UIButton!
 	@IBOutlet weak var dateAndTimePicker: UIDatePicker!
-	@IBOutlet weak var walkingSliderView: Slider!
+	@IBOutlet weak var walkingSlider: Slider!
 	@IBOutlet weak var departureTimeSlider: Slider!
 	@IBOutlet weak var searchButton: TransitionButton!
 	@IBOutlet weak var filterButton: UIButton!
@@ -44,6 +49,11 @@ class HomeViewController: UIViewController {
 	var selectedSearchBox = SearchBox.startFrom
 	var fromCoordinate: CLLocationCoordinate2D?
 	var toCoordinate: CLLocationCoordinate2D?
+	var fromAddress: String?
+	var toAddress: String?
+	var time: String?
+	var walkingDistance: String?
+	var departsIn: String?
 
 	lazy var placesSearchController: GooglePlacesSearchController = {
 		let controller = GooglePlacesSearchController(delegate: self,
@@ -67,10 +77,11 @@ class HomeViewController: UIViewController {
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		imageViewTrailingConstraint.constant = 20
-		UIView.animate(withDuration: 1) {
-			self.view.layoutIfNeeded()
-			//self.busiImageView.layoutIfNeeded()
+		if filterShown {
+			imageViewTrailingConstraint.constant = 20
+			UIView.animate(withDuration: 1) {
+				self.view.layoutIfNeeded()
+			}
 		}
 	}
 
@@ -94,24 +105,40 @@ class HomeViewController: UIViewController {
 		dateAndTimePicker.datePickerMode = .dateAndTime
 		dateAndTimePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
 		//Slider
-		addCustomSlider(slider: walkingSliderView)
+		walkingSlider.tag =  Filter.walking.rawValue
+		addCustomSlider(slider: walkingSlider)
+		departureTimeSlider.tag = Filter.departsIn.rawValue
 		addCustomSlider(slider: departureTimeSlider)
+		walkingSlider.addTarget(self, action: #selector(HomeViewController.sliderValueChanged(_:)), for: .valueChanged)
+		departureTimeSlider.addTarget(self, action: #selector(HomeViewController.sliderValueChanged(_:)), for: .valueChanged)
 		//Search button
 		customizeSearchButton()
 	}
 
 	func addCustomSlider(slider: Slider) {
 		let labelTextAttributes: [NSAttributedStringKey : Any] = [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.white]
-		slider.attributedTextForFraction = { fraction in
-			let formatter = NumberFormatter()
-			formatter.maximumIntegerDigits = 2
-			formatter.maximumFractionDigits = 0
-			let string = formatter.string(from: (fraction * 60) as NSNumber) ?? ""
-			return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
+		if slider.tag == Filter.walking.rawValue {
+			slider.attributedTextForFraction = { fraction in
+				let formatter = NumberFormatter()
+				formatter.maximumIntegerDigits = 2
+				formatter.maximumFractionDigits = 0
+				let string = formatter.string(from: (fraction * 30) as NSNumber) ?? ""
+				self.walkingDistance = string
+				return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
+			}
+		} else {
+			slider.attributedTextForFraction = { fraction in
+				let formatter = NumberFormatter()
+				formatter.maximumIntegerDigits = 2
+				formatter.maximumFractionDigits = 0
+				let string = formatter.string(from: (fraction * 30) as NSNumber) ?? ""
+				self.departsIn = string
+				return NSAttributedString(string: string, attributes: [.font: UIFont.systemFont(ofSize: 12, weight: .bold), .foregroundColor: UIColor.black])
+			}
 		}
 		slider.setMinimumLabelAttributedText(NSAttributedString(string: "0", attributes: labelTextAttributes))
-		slider.setMaximumLabelAttributedText(NSAttributedString(string: "60", attributes: labelTextAttributes))
-		slider.fraction = 5
+		slider.setMaximumLabelAttributedText(NSAttributedString(string: "30", attributes: labelTextAttributes))
+		slider.fraction = 1
 		slider.shadowOffset = CGSize(width: 0, height: 10)
 		slider.shadowBlur = 5
 		slider.shadowColor = UIColor(white: 0, alpha: 0.1)
@@ -141,6 +168,8 @@ extension HomeViewController {
 				self.searchButton.stopAnimation(animationStyle: .expand, completion: {
 					let storyboard = UIStoryboard(name: "Main", bundle: nil)
 					let controller = storyboard.instantiateViewController(withIdentifier: "TripListingViewController") as? TripListingViewController
+					controller?.startLoctionAddress =  self.fromAddress
+					controller?.endLocationAddress = self.toAddress
 					self.present(controller!, animated: true, completion: nil)
 				})
 			})
@@ -157,9 +186,12 @@ extension HomeViewController: GooglePlacesAutocompleteViewControllerDelegate {
 		if selectedSearchBox == SearchBox.startFrom {
 			startFrom.setTitle(place.formattedAddress, for: .normal)
 			fromCoordinate = place.coordinate
+			fromAddress = place.formattedAddress
+
 		} else {
 			whereTo.setTitle(place.formattedAddress, for: .normal)
 			toCoordinate = place.coordinate
+			toAddress = place.formattedAddress
 		}
 	}
 
@@ -171,13 +203,11 @@ extension HomeViewController {
 	@IBAction func filterAction(_ sender: Any) {
 		filterShown = !filterShown
 		filterViewHeight.constant =  filterShown ? 0 : 130
-		if !filterShown {
-			UIView.animate(withDuration: 0.8) {
-				self.view.layoutIfNeeded()
-				self.filterView.layoutIfNeeded()
-			}
-		} else {
+		imageViewTrailingConstraint.constant = filterShown ? 20 : 600
+		UIView.animate(withDuration: 0.8) {
+			self.view.layoutIfNeeded()
 			self.filterView.layoutIfNeeded()
+			self.filterView.isHidden = self.filterShown ? true : false
 		}
 	}
 
@@ -195,16 +225,22 @@ extension HomeViewController {
 
 // MARK: - Slider Delegates
 extension HomeViewController {
-
-
+	@objc func sliderValueChanged(_ sender: UIControl) {
+		print("******\(walkingDistance!)")
+	}
 }
 
 // MARK: - Time & Date picker Methods
 extension HomeViewController {
 
 	@objc func dateChanged(_ sender: UIDatePicker) {
-		let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: sender.date)
-	print("\(components.day) \(String(describing: components.month)) \(String(describing: components.year)) \(String(describing: components.hour)) \(components.minute ?? 0)")
+		//let components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: sender.date)
+		let formatter = DateFormatter()
+		formatter.locale = Locale(identifier: "en_US_POSIX")
+		formatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+		time = formatter.string(from: sender.date)
+		print("\(time ?? "")")
+		self.view.endEditing(true)
 	}
 
 }

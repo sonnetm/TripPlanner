@@ -15,10 +15,10 @@
 		047829C421007697000FE13B /* TripPlannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047829C321007697000FE13B /* TripPlannerTests.swift */; };
 		047829CF21007697000FE13B /* TripPlannerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047829CE21007697000FE13B /* TripPlannerUITests.swift */; };
 		048C5B252101A813003D78D8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048C5B242101A813003D78D8 /* HomeViewController.swift */; };
+		04B2E983210F0A9E00A8C6AC /* ResultListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B2E982210F0A9E00A8C6AC /* ResultListingCell.swift */; };
 		04DD1EEA2105C61200D3B515 /* TripListingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD1EE92105C61200D3B515 /* TripListingViewController.swift */; };
 		04DD1EF62105D3E200D3B515 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD1EF52105D3E200D3B515 /* Utilities.swift */; };
 		04DD1EF82105D3F700D3B515 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD1EF72105D3F600D3B515 /* Constants.swift */; };
-		04DD1EFA2105D63400D3B515 /* SearchPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DD1EF92105D63400D3B515 /* SearchPlacesViewController.swift */; };
 		54506B0B66CBFBA54D476D77 /* Pods_TripPlannerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8177C21C06C2071D4BD3E9C6 /* Pods_TripPlannerUITests.framework */; };
 		6D86E3ED245FF162C7F93A6D /* Pods_TripPlannerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B71F3055C03DE6D14E34EE8 /* Pods_TripPlannerTests.framework */; };
 		E576C8D5EF8F7AB64BC73A1D /* Pods_TripPlanner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FC2B816E5CFFDE223408E9 /* Pods_TripPlanner.framework */; };
@@ -56,10 +56,10 @@
 		047829CE21007697000FE13B /* TripPlannerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPlannerUITests.swift; sourceTree = "<group>"; };
 		047829D021007697000FE13B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		048C5B242101A813003D78D8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		04B2E982210F0A9E00A8C6AC /* ResultListingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListingCell.swift; sourceTree = "<group>"; };
 		04DD1EE92105C61200D3B515 /* TripListingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripListingViewController.swift; sourceTree = "<group>"; };
 		04DD1EF52105D3E200D3B515 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		04DD1EF72105D3F600D3B515 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		04DD1EF92105D63400D3B515 /* SearchPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlacesViewController.swift; sourceTree = "<group>"; };
 		08FC2B816E5CFFDE223408E9 /* Pods_TripPlanner.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlanner.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C02272DEB2D196A86E73D8D /* Pods-TripPlannerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TripPlannerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TripPlannerTests/Pods-TripPlannerTests.release.xcconfig"; sourceTree = "<group>"; };
 		8177C21C06C2071D4BD3E9C6 /* Pods_TripPlannerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TripPlannerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,13 +128,13 @@
 				047829B021007696000FE13B /* ViewController.swift */,
 				04DD1EE92105C61200D3B515 /* TripListingViewController.swift */,
 				048C5B242101A813003D78D8 /* HomeViewController.swift */,
-				04DD1EF92105D63400D3B515 /* SearchPlacesViewController.swift */,
 				047829B521007696000FE13B /* Assets.xcassets */,
 				047829B221007696000FE13B /* Main.storyboard */,
 				047829B721007696000FE13B /* LaunchScreen.storyboard */,
 				047829BA21007696000FE13B /* Info.plist */,
 				04DD1EF52105D3E200D3B515 /* Utilities.swift */,
 				04DD1EF72105D3F600D3B515 /* Constants.swift */,
+				04B2E982210F0A9E00A8C6AC /* ResultListingCell.swift */,
 			);
 			path = TripPlanner;
 			sourceTree = "<group>";
@@ -429,10 +429,10 @@
 				047829B121007696000FE13B /* ViewController.swift in Sources */,
 				047829AF21007696000FE13B /* AppDelegate.swift in Sources */,
 				04DD1EF82105D3F700D3B515 /* Constants.swift in Sources */,
+				04B2E983210F0A9E00A8C6AC /* ResultListingCell.swift in Sources */,
 				04DD1EF62105D3E200D3B515 /* Utilities.swift in Sources */,
 				04DD1EEA2105C61200D3B515 /* TripListingViewController.swift in Sources */,
 				048C5B252101A813003D78D8 /* HomeViewController.swift in Sources */,
-				04DD1EFA2105D63400D3B515 /* SearchPlacesViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
