@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="TrebuchetMS.ttf">
-            <string>TrebuchetMS</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Home View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -422,6 +417,33 @@
             </objects>
             <point key="canvasLocation" x="1097" y="-162"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="2Zi-Hy-P3k">
+            <objects>
+                <viewController id="VJz-WT-FCc" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y97-Y8-stQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tF9-Wv-Rja" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="DMD-wx-F5T" firstAttribute="trailing" secondItem="tF9-Wv-Rja" secondAttribute="trailing" id="3dY-ab-2xf"/>
+                            <constraint firstItem="tF9-Wv-Rja" firstAttribute="leading" secondItem="DMD-wx-F5T" secondAttribute="leading" id="dV1-6f-4hP"/>
+                            <constraint firstItem="DMD-wx-F5T" firstAttribute="bottom" secondItem="tF9-Wv-Rja" secondAttribute="bottom" id="iSp-lX-P3A"/>
+                            <constraint firstItem="tF9-Wv-Rja" firstAttribute="top" secondItem="DMD-wx-F5T" secondAttribute="top" id="tLd-qV-dlq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="DMD-wx-F5T"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mcf-36-K9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1922" y="114"/>
+        </scene>
         <!--Trip Listing View Controller-->
         <scene sceneID="gcR-YT-1Sf">
             <objects>
@@ -717,21 +739,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lup-hm-asp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="878.41079460269873"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="oFD-iV-tsI">
-            <objects>
-                <viewController id="iZu-zM-Rms" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="7og-v5-d05">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="nmU-rz-UVe"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wtr-R4-FYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1027" y="530"/>
         </scene>
     </scenes>
     <resources>
