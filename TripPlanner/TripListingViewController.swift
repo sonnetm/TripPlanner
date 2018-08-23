@@ -10,7 +10,7 @@ import UIKit
 import TransitionButton
 
 struct TripListConstants {
-	static let rowHeight = 160
+	static let rowHeight: CGFloat = 160
 	static let noOfRows = 5
 }
 
