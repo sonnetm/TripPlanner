@@ -9,15 +9,24 @@
 import UIKit
 import TransitionButton
 
-class TripListingViewController: CustomTransitionViewController {
+struct TripListConstants {
+	static let rowHeight = 160
+	static let noOfRows = 5
+}
 
+class TripListingViewController: CustomTransitionViewController {
+	
+	// MARK: - Outlets
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var startLabel: UILabel!
 	@IBOutlet weak var endLabel: UILabel!
+	
+	// MARK: -Variables
 	var startLoctionAddress: String?
 	var endLocationAddress: String?
 	let cellReuseIdentifier = "resultCell"
 
+	// MARK: - Override Methods
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		UIApplication.shared.statusBarStyle = .lightContent
@@ -49,23 +58,21 @@ class TripListingViewController: CustomTransitionViewController {
 	}
 }
 
+
+// MARK: - Tableview delegates
 extension TripListingViewController: UITableViewDelegate, UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
+		return TripListConstants.noOfRows
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as! ResultListingCell
-
-		// set the text from the data model
-	//	cell.textLabel?.text = self.animals[indexPath.row]
-
 		return cell
 
 	}
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 160
+		return TripListConstants.rowHeight
 	}
 
 }
